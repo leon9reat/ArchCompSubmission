@@ -8,21 +8,21 @@ object DataDummy {
         listMovie.add(
             Detail(
                 1,
-                "2020-01-01",
-                null,
-                "Movie Satu",
+                 "Apr 07, 2021",
+                "https://www.themoviedb.org/t/p/w220_and_h330_face/6Wdl9N6dL0Hi0T1qJLWSz6gMLbd.jpg",
+                "Mortal Kombat",
                 "Keterangan yg panjang",
-                7.4,
-                5.0,
+                7.8,
+                7.8,
                 false
             )
         )
         listMovie.add(
             Detail(
                 2,
-                "2020-01-01",
-                null,
-                "Movie Dua",
+                "Mar 24, 2021",
+                "https://www.themoviedb.org/t/p/w220_and_h330_face/pgqgaUx1cJb5oZQQ5v0tNARCeBp.jpg",
+                "Godzilla vs. Kong",
                 "Keterangan yg panjang",
                 7.4,
                 5.0,
@@ -32,9 +32,9 @@ object DataDummy {
         listMovie.add(
             Detail(
                 3,
-                "2020-01-01",
-                null,
-                "Movie Tiga",
+                "Apr 16, 2021",
+                "https://www.themoviedb.org/t/p/w220_and_h330_face/AoWY1gkcNzabh229Icboa1Ff0BM.jpg",
+                "Vanquish",
                 "Keterangan yg panjang",
                 7.4,
                 5.0,
@@ -44,9 +44,9 @@ object DataDummy {
         listMovie.add(
             Detail(
                 4,
-                "2020-01-01",
-                null,
-                "Movie Empat",
+                "Mar 26, 2021",
+                "https://www.themoviedb.org/t/p/w220_and_h330_face/oBgWY00bEFeZ9N25wWVyuQddbAo.jpg",
+                "Nobody",
                 "Keterangan yg panjang",
                 7.4,
                 5.0,
@@ -56,9 +56,9 @@ object DataDummy {
         listMovie.add(
             Detail(
                 5,
-                "2020-01-01",
-                null,
-                "Movie Lima",
+                "Mar 31, 2021",
+                "https://www.themoviedb.org/t/p/w220_and_h330_face/b4gYVcl8pParX8AjkN90iQrWrWO.jpg",
+                "The Unholy",
                 "Keterangan yg panjang",
                 7.4,
                 5.0,
@@ -68,9 +68,9 @@ object DataDummy {
         listMovie.add(
             Detail(
                 6,
-                "2020-01-01",
-                null,
-                "Movie Enam",
+                "Mar 18, 2021",
+                "https://www.themoviedb.org/t/p/w220_and_h330_face/tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg",
+                "Zack Snyder's Justice League",
                 "Keterangan yg panjang",
                 7.4,
                 5.0,
@@ -80,9 +80,9 @@ object DataDummy {
         listMovie.add(
             Detail(
                 7,
-                "2020-01-01",
-                null,
-                "Movie Tujuh",
+                "Apr 04, 2021",
+                "https://www.themoviedb.org/t/p/w220_and_h330_face/tf9nWFyJ745mBFkXZtPWabDYBR3.jpg",
+                "Miraculous World Shanghai, la légende de Ladydragon",
                 "Keterangan yg panjang",
                 7.4,
                 5.0,
@@ -92,9 +92,9 @@ object DataDummy {
         listMovie.add(
             Detail(
                 8,
-                "2020-01-01",
-                null,
-                "Movie Lapan",
+                "Apr 04, 2021",
+                "https://www.themoviedb.org/t/p/w220_and_h330_face/duK11VQd4UPDa7UJrgrGx90xJOx.jpg",
+                "Thunder Force",
                 "Keterangan yg panjang",
                 7.4,
                 5.0,
@@ -104,9 +104,9 @@ object DataDummy {
         listMovie.add(
             Detail(
                 9,
-                "2020-01-01",
-                null,
-                "Movie Sembilan",
+                "Jan 15, 2021",
+                "https://www.themoviedb.org/t/p/w220_and_h330_face/6vcDalR50RWa309vBH1NLmG2rjQ.jpg",
+                "The Marksman",
                 "Keterangan yg panjang",
                 7.4,
                 5.0,
@@ -116,9 +116,9 @@ object DataDummy {
         listMovie.add(
             Detail(
                 10,
-                "2020-01-01",
-                null,
-                "Movie Sepuluh",
+                "Mar 03, 2021",
+                "https://www.themoviedb.org/t/p/w220_and_h330_face/2AZIBU24AUn3c81WKinupffALjP.jpg",
+                "Raya and the Last Dragon",
                 "Keterangan yg panjang",
                 7.4,
                 5.0,

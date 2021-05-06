@@ -27,10 +27,10 @@
     <string name="text_follow_me">Follow Me</string>
     <string name="change_language">Change Language</string>
     <string name="label_title">Title</string>
-    <string name="label_release">Release Date</string>
+    <string name="label_release">Release Date %s</string>
     <string name="label_vote">Average Vote</string>
     <string name="label_overview">Overview</string>
-    <string name="label_airing">First Airing</string>
+    <string name="label_airing">First Airing %s</string>
     <string name="title_tv_show_favorite">TV Show Favorite</string>
     <string name="title_movie_favorite">Movie Favorite</string>
     <string name="title_detail_favorite">Detail Favorite</string>
@@ -56,4 +56,8 @@
     <string name="title_daily_reminder">Daily Reminder</string>
     <string name="summary_release_reminder">Reminder showing the movies that released today</string>
     <string name="summary_daily_reminder">Reminder for return to app</string>
+    <string name="movie">Movies</string>
+    <string name="tv_show">Tv Shows</string>
+    <string name="release_date">Release Date %s</string>
+    <string name="error">Error</string>
 </resources>
