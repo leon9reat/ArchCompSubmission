@@ -1,4 +1,4 @@
-package com.medialink.archcompsubmission.ui.main
+package com.medialink.archcompsubmission.ui.main.fragment
 
 import androidx.lifecycle.ViewModel
 import com.medialink.archcompsubmission.data.model.Detail

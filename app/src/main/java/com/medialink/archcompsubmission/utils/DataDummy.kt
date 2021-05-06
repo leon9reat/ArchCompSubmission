@@ -262,18 +262,6 @@ object DataDummy {
                 false
             )
         )
-        listTvShow.add(
-            Detail(
-                11,
-                "2020-01-01",
-                null,
-                "TV Show Sebelas",
-                "Keterangan yg panjang",
-                7.4,
-                5.0,
-                false
-            )
-        )
         return listTvShow
     }
 }

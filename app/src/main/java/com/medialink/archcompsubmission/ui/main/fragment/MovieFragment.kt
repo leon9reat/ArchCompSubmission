@@ -1,4 +1,4 @@
-package com.medialink.archcompsubmission.ui.main
+package com.medialink.archcompsubmission.ui.main.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
