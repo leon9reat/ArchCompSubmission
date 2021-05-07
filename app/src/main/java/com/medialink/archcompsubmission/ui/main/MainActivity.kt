@@ -1,8 +1,7 @@
 package com.medialink.archcompsubmission.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.medialink.archcompsubmission.R
+import androidx.appcompat.app.AppCompatActivity
 import com.medialink.archcompsubmission.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

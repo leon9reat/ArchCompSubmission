@@ -4,38 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.fragment.MovieFragment">
+    tools:context=".ui.main.fragment.BaseFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/movies_swipe"
         android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:id="@+id/movies_swipe">
+        android:layout_width="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/movies_rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/movies_rv"
-            tools:listitem="@layout/movie_item" />
+            tools:listitem="@layout/fragment_base_item" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <ProgressBar
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/progress_movie"
         android:layout_gravity="center"
         android:visibility="gone"
         tools:visibility="visible" />
 
     <include
         layout="@layout/layout_empty"
-        android:id="@+id/layout_empty"
         android:visibility="gone"
         tools:visibility="visible" />
 
     <include
         layout="@layout/layout_error"
-        android:id="@+id/layout_error"
         android:visibility="gone"
         tools:visibility="visible" />
 

@@ -7,9 +7,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.medialink.archcompsubmission.R
 import com.medialink.archcompsubmission.data.model.Detail
-import com.medialink.archcompsubmission.databinding.MovieItemBinding
+import com.medialink.archcompsubmission.databinding.FragmentBaseItemBinding
 
-class MovieAdapter(var mJenis: Int) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+class BaseAdapter(private val mJenis: Int, private val callback: BaseFragmentCallback) :
+    RecyclerView.Adapter<BaseAdapter.MovieViewHolder>() {
     private var mListData = ArrayList<Detail>()
 
     fun setData(listData: List<Detail>?) {
@@ -19,14 +20,16 @@ class MovieAdapter(var mJenis: Int) : RecyclerView.Adapter<MovieAdapter.MovieVie
 
     }
 
-    inner class MovieViewHolder(private val binding: MovieItemBinding) :
+    inner class MovieViewHolder(private val binding: FragmentBaseItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
 
         fun bind(detail: Detail) {
             val lblTanggal = when (mJenis) {
-                MovieFragment.PARAM_MOVIE -> itemView.resources.getString(R.string.label_release, detail.releaseDate)
-                else -> itemView.resources.getString(R.string.label_airing, detail.releaseDate)
+                BaseFragment.PARAM_MOVIE -> itemView.resources.getString(
+                    R.string.label_release
+                ) + " " + detail.releaseDate
+                else -> itemView.resources.getString(R.string.label_airing) +" "+ detail.releaseDate
             }
             with(binding) {
                 tvTitleMovieList.text = detail.title
@@ -40,15 +43,21 @@ class MovieAdapter(var mJenis: Int) : RecyclerView.Adapter<MovieAdapter.MovieVie
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading))
                     .error(R.drawable.ic_error)
                     .into(imgPosterMovieList)
+
+                btnLike.setOnClickListener { callback.onFavoriteClick(detail) }
+                btnShare.setOnClickListener { callback.onShareClick(detail) }
+                itemView.setOnClickListener {
+                    callback.onItemClick(detail)
+                }
             }
         }
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val movieItemBinding =
-            MovieItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MovieViewHolder(movieItemBinding)
+        val baseItemBinding =
+            FragmentBaseItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MovieViewHolder(baseItemBinding)
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
