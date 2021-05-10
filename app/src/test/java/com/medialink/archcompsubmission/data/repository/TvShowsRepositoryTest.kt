@@ -5,6 +5,17 @@ import org.junit.Test
 
 import org.junit.Assert.*
 
+/** TvShowsRepositoryTest
+* muat list tv show
+* 1. memastikan list tv show tidak null
+* 2. memastikan jumlah data dummy adalah 10
+*
+* muat detail tv show
+* 1. memastikan data tidak null
+* 2. memastikan data id, title tv show sesuai
+*
+*/
+
 class TvShowsRepositoryTest {
     private lateinit var repo: TvShowsRepository
 

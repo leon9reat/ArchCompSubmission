@@ -1,0 +1,33 @@
+MainActivityTest
+
+1. Menampilkan data movies
+    - Memastikan movies_rv dalam keadaan tampil.
+    - Gulir movies_rv ke posisi data terakhir.
+
+2. Menampilkan data tv shows
+    - click tab tv show
+    - Memastikan movies_rv dalam keadaan tampil.
+    - Gulir movies_rv ke posisi data terakhir.
+
+3. Menampilkan data detail movies
+    - Memberi tindakan klik pada data pertama di movies_rv.
+    - Memastikan intent memiliki bundle yang dikirim berupa BaseFragment.PARAM_MOVIE dan id
+
+4. Menampilkan data tv shows
+    - click tab tv show
+    - Memastikan movies_rv dalam keadaan tampil.
+    - Memberi tindakan klik pada data pertama di movies_rv.
+    - Memastikan intent memiliki bundle yang dikirim berupa BaseFragment.PARAM_TV_SHOW dan id
+
+5. Tombol Favorite Movie Ditekan
+    - Pastikan tombol ditampilkan
+    - Click tombol Favorite
+    - Pastikan Jenis dan id yang dikirim benar
+    - Toast ditampilkan (belum imlementasi kode sebenarnya)
+
+6. Tombol Share Movie Ditekan
+    - Klik TabLayout dengan teks Bookmark
+    - Memastikan rv_module dalam keadaan tampil.
+    - Gulir rv_module ke posisi data terakhir.
+
+7. Swipe Refresh
