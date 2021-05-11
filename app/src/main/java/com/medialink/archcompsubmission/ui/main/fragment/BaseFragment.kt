@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.medialink.archcompsubmission.data.model.Detail
 import com.medialink.archcompsubmission.databinding.FragmentBaseBinding
 import com.medialink.archcompsubmission.ui.detail.DetailActivity
@@ -86,10 +87,18 @@ class BaseFragment : Fragment(), BaseFragmentCallback {
     }
 
     override fun onShareClick(detail: Detail) {
-        Toast.makeText(context, "Share", Toast.LENGTH_SHORT).show()
+        Snackbar.make(
+            fragmentBaseBinding.myCoordinatorLayout,
+            "Share",
+            Snackbar.LENGTH_SHORT
+        ).show()
     }
 
     override fun onFavoriteClick(detail: Detail) {
-        Toast.makeText(context, "Favorite", Toast.LENGTH_SHORT).show()
+        Snackbar.make(
+            fragmentBaseBinding.myCoordinatorLayout,
+            "Favorite",
+            Snackbar.LENGTH_SHORT
+        ).show()
     }
 }

@@ -22,12 +22,11 @@ MainActivityTest
 5. Tombol Favorite Movie Ditekan
     - Pastikan tombol ditampilkan
     - Click tombol Favorite
-    - Pastikan Jenis dan id yang dikirim benar
     - Toast ditampilkan (belum imlementasi kode sebenarnya)
 
 6. Tombol Share Movie Ditekan
-    - Klik TabLayout dengan teks Bookmark
-    - Memastikan rv_module dalam keadaan tampil.
-    - Gulir rv_module ke posisi data terakhir.
+    - Pastikan tombol ditampilkan
+    - Click tombol Share
+    - Toast ditampilkan (belum imlementasi kode sebenarnya)
 
-7. Swipe Refresh
+7. untuk yang tv show tidak bikin test lagi. fungsi dan layout sama.

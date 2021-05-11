@@ -1,10 +1,11 @@
 package com.medialink.archcompsubmission.ui.main
 
-import android.provider.ContactsContract.Directory.PACKAGE_NAME
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.PerformException
+import androidx.test.espresso.UiController
+import androidx.test.espresso.ViewAction
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.swipeUp
@@ -12,11 +13,10 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.ComponentNameMatchers.hasShortClassName
-import androidx.test.espresso.intent.matcher.IntentMatchers.*
+import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
+import androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra
 import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.ext.junit.rules.ActivityScenarioRule
-import androidx.test.rule.ActivityTestRule
 import com.google.android.material.tabs.TabLayout
 import com.medialink.archcompsubmission.R
 import com.medialink.archcompsubmission.ui.detail.DetailActivity
@@ -34,8 +34,8 @@ class MainActivityTest {
     private val dummyMovies = DataDummy.generateMovies()
     private val dummyTvShow = DataDummy.generateTvShows()
 
-    @get:Rule
-    var activityRule = ActivityScenarioRule(MainActivity::class.java)
+    //@get:Rule
+    //var activityRule = ActivityScenarioRule(MainActivity::class.java)
 
     @get:Rule
     var intentsRule: IntentsTestRule<MainActivity> = IntentsTestRule(MainActivity::class.java)
@@ -110,6 +110,8 @@ class MainActivityTest {
                 click()
             )
         )
+
+
         intended(allOf(
             hasComponent(hasShortClassName(".ui.detail.DetailActivity")),
             hasExtra(DetailActivity.EXTRA_JENIS, BaseFragment.PARAM_TV_SHOW),
@@ -117,15 +119,84 @@ class MainActivityTest {
     }
 
     @Test
+    fun testButtonFavoriteClick() {
+        val recycler = allOf(
+            withId(R.id.movies_rv),
+            isDisplayed()
+        )
+
+        onView(recycler).check(matches(hasDescendant(withText(R.string.title_favorite))))
+        clickOnFavoriteAtRow(0, recycler)
+        onView(withId(com.google.android.material.R.id.snackbar_text))
+            .check(matches(withText("Favorite")))
+    }
+
+    private fun clickOnFavoriteAtRow(position: Int, view: Matcher<View>) {
+        onView(view)
+            .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>
+            (position, ClickOnButtonView()))
+    }
+
+    inner class ClickOnButtonView : ViewAction {
+        private var click = click()
+
+        override fun getConstraints(): Matcher<View> {
+            return click.constraints
+        }
+
+        override fun getDescription(): String {
+            return " click on custom button view"
+        }
+
+        override fun perform(uiController: UiController?, view: View) {
+            //btnClickMe -> Custom row item view button
+            click.perform(uiController, view.findViewById(R.id.btn_like))
+        }
+    }
+
+    @Test
+    fun testButtonShareClick() {
+        val recycler = allOf(
+            withId(R.id.movies_rv),
+            isDisplayed()
+        )
+
+        onView(recycler).check(matches(hasDescendant(withText(R.string.title_share))))
+        clickOnShareAtRow(0, recycler)
+        onView(withId(com.google.android.material.R.id.snackbar_text))
+            .check(matches(withText("Share")))
+    }
+
+    private fun clickOnShareAtRow(position: Int, view: Matcher<View>) {
+        onView(view)
+            .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>
+                (position, ClickOnShareButton()))
+    }
+
+    inner class ClickOnShareButton : ViewAction {
+        private var click = click()
+
+        override fun getConstraints(): Matcher<View> {
+            return click.constraints
+        }
+
+        override fun getDescription(): String {
+            return " click on custom button view"
+        }
+
+        override fun perform(uiController: UiController?, view: View) {
+            //btnClickMe -> Custom row item view button
+            click.perform(uiController, view.findViewById(R.id.btn_share))
+        }
+    }
+
+
+
+    @Test
     fun shouldShowTvShowTab() {
         // swipe kiri, pastikan title benar
         onView(withId(R.id.view_pager)).perform(ViewActions.swipeLeft())
         onView(withId(R.id.tabs)).check(matches(matchCurrentTabTitle("Tv Shows")))
-
-        /*onView(allOf(withId(R.id.movies_rv), hasFocus()))
-            .perform(RecyclerViewActions
-                .actionOnItemAtPosition<BaseAdapter.MovieViewHolder>(2, click())) */
-
     }
 
     @Test
@@ -156,6 +227,22 @@ class MainActivityTest {
                         .build()
 
                 return tabAtIndex.text.toString().contains(tabTitle, true)
+            }
+        }
+    }
+
+    fun waitFor(delay: Long): ViewAction {
+        return object : ViewAction {
+            override fun getConstraints(): Matcher<View> {
+                return isRoot()
+            }
+
+            override fun getDescription(): String {
+                return "wait for " + delay + "milliseconds"
+            }
+
+            override fun perform(uiController: UiController, view: View) {
+                uiController.loopMainThreadForAtLeast(delay)
             }
         }
     }
