@@ -1,16 +1,47 @@
 package com.medialink.archcompsubmission.data.repository
 
+import android.content.Context
 import android.util.Log
+import com.google.gson.Gson
 import com.medialink.archcompsubmission.data.model.Detail
 import com.medialink.archcompsubmission.data.model.movie.ListMovie
-import com.medialink.archcompsubmission.utils.DataDummy
+import com.medialink.archcompsubmission.utils.getJsonDataFromAsset
 
-class MoviesRepository() : IRepository {
+class MoviesRepository(context: Context) : IRepository {
 
-    private var listMovie: List<Detail> = DataDummy.generateMovies()
+    private var listMovie: ListMovie
+    private val formatPoster = "https://www.themoviedb.org/t/p/w220_and_h330_face%1s"
+
+    init {
+        val gson = Gson()
+        val jsonString = getJsonDataFromAsset(context, "list_movie.json")
+        listMovie = gson.fromJson(jsonString, ListMovie::class.java)
+        listMovie.let { Log.i("movie", it.toString()) }
+    }
+
 
     override fun getListData(): List<Detail> {
-        return listMovie
+        val listResult = mutableListOf<Detail>()
+
+        listMovie.results?.let {
+            for (item in it) {
+
+                listResult.add(
+                    Detail(
+                        item.id,
+                        item.releaseDate,
+                        String.format(formatPoster, item.posterPath),
+                        item.title,
+                        item.overview,
+                        item.popularity,
+                        item.voteAverage,
+                        false
+                    )
+                )
+
+            }
+        }
+        return listResult
     }
 
     override fun getCurrentData(id: Int): Detail {
@@ -20,12 +51,24 @@ class MoviesRepository() : IRepository {
         )
 
 
-        for (item in listMovie) {
-            if (item.id == id) {
-                itemDetail = item
-                break
+        listMovie.results?.let {
+            for (item in it) {
+                if (item.id == id) {
+                    itemDetail = Detail(
+                        item.id,
+                        item.releaseDate,
+                        String.format(formatPoster, item.posterPath),
+                        item.title,
+                        item.overview,
+                        item.popularity,
+                        item.voteAverage,
+                        false
+                    )
+                    break
+                }
             }
         }
+
         return itemDetail
     }
 

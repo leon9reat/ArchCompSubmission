@@ -1,9 +1,14 @@
 package com.medialink.archcompsubmission.data.repository
 
+import android.content.Context
+import android.os.Build.VERSION_CODES.Q
+import androidx.test.core.app.ApplicationProvider
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
-
-import org.junit.Assert.*
+import org.junit.runner.RunWith
+import org.robolectric.annotation.Config
 
 /** MoviesRepositoryTest
  * muat list movie
@@ -15,19 +20,28 @@ import org.junit.Assert.*
  * 2. memastikan data id, title movie sesuai
  *
  */
+@RunWith(AndroidJUnit4::class)
+@Config(sdk = [Q])
 class MoviesRepositoryTest {
     private lateinit var repo: MoviesRepository
+    private val context: Context = ApplicationProvider.getApplicationContext()
+
 
     @Before
     fun setUp() {
-        repo = MoviesRepository()
+        repo = MoviesRepository(context)
+    }
+
+    @Test
+    fun test_getPackageName() {
+        assertEquals(context.packageName,"com.medialink.archcompsubmission")
     }
 
     @Test
     fun getListData() {
         val listData = repo.getListData()
         assertNotNull(listData)
-        assertEquals(11, listData.size)
+        assertEquals(20, listData.size)
     }
 
     @Test

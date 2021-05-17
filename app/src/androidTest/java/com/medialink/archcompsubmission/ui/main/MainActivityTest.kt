@@ -19,9 +19,10 @@ import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.ViewMatchers.*
 import com.google.android.material.tabs.TabLayout
 import com.medialink.archcompsubmission.R
+import com.medialink.archcompsubmission.data.repository.MoviesRepository
+import com.medialink.archcompsubmission.data.repository.TvShowsRepository
 import com.medialink.archcompsubmission.ui.detail.DetailActivity
 import com.medialink.archcompsubmission.ui.main.fragment.BaseFragment
-import com.medialink.archcompsubmission.utils.DataDummy
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
@@ -31,19 +32,14 @@ import org.junit.Test
 
 
 class MainActivityTest {
-    private val dummyMovies = DataDummy.generateMovies()
-    private val dummyTvShow = DataDummy.generateTvShows()
-
     //@get:Rule
     //var activityRule = ActivityScenarioRule(MainActivity::class.java)
 
     @get:Rule
     var intentsRule: IntentsTestRule<MainActivity> = IntentsTestRule(MainActivity::class.java)
 
-
-
     @Test
-    fun loadMovie() {
+    fun test_LoadMovieDanSwipeUp() {
         val matcher = allOf(
             withId(R.id.movies_rv),
             isDisplayed()
@@ -57,7 +53,10 @@ class MainActivityTest {
     }
 
     @Test
-    fun loadTvShow() {
+    fun test_LoadTvShowAndChangeTab() {
+
+        val dummyTvShow = TvShowsRepository(intentsRule.activity.applicationContext).getListData()
+
         val tabs = allOf(
             withText("Tv Shows"),
             isDescendantOfA(withId(R.id.tabs))
@@ -75,6 +74,9 @@ class MainActivityTest {
 
     @Test
     fun shouldShowMovieDetail() {
+
+        val dummyMovies = MoviesRepository(intentsRule.activity.applicationContext).getListData()
+
         val matcher = allOf(
             withId(R.id.movies_rv),
             isDisplayed(),
@@ -93,6 +95,9 @@ class MainActivityTest {
 
     @Test
     fun shouldShowTvShowDetail() {
+
+        val dummyTvShow = TvShowsRepository(intentsRule.activity.applicationContext).getListData()
+
         val tabs = allOf(
             withText("Tv Shows"),
             isDescendantOfA(withId(R.id.tabs))

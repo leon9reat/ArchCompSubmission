@@ -1,7 +1,6 @@
 package com.medialink.archcompsubmission.ui.main.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,14 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import com.google.gson.Gson
 import com.medialink.archcompsubmission.data.model.Detail
-import com.medialink.archcompsubmission.data.model.movie.ListMovie
 import com.medialink.archcompsubmission.databinding.FragmentBaseBinding
 import com.medialink.archcompsubmission.ui.detail.DetailActivity
 import com.medialink.archcompsubmission.utils.DataFactory
-import com.medialink.archcompsubmission.utils.getJsonDataFromAsset
-import java.io.FileReader
 
 
 class BaseFragment : Fragment(), BaseFragmentCallback {
@@ -46,13 +41,13 @@ class BaseFragment : Fragment(), BaseFragmentCallback {
         if (activity != null) {
 
             //val jsonFileString = getJsonDataFromAsset(requireActivity().applicationContext, "list_movie.json")
-            val gson = Gson()
+            /*val gson = Gson()
             val jsonString = getJsonDataFromAsset(requireActivity().applicationContext, "list_movie.json")
             val jsonFileString: ListMovie = gson.fromJson(jsonString, ListMovie::class.java)
-            jsonFileString.let { Log.i("data", it.toString()) }
+            jsonFileString.let { Log.i("data", it.toString()) }*/
 
 
-            val factory = DataFactory.getFactory(idJenis)
+            val factory = DataFactory.getFactory(requireActivity().applicationContext, idJenis)
             val viewModel = ViewModelProvider(this, factory).get(BaseViewModel::class.java)
             val listData = viewModel.getListData()
             val movieAdapter = BaseAdapter(idJenis, this)

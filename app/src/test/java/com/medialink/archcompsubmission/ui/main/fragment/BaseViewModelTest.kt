@@ -1,32 +1,68 @@
 package com.medialink.archcompsubmission.ui.main.fragment
 
-import com.medialink.archcompsubmission.utils.DataDummy
-import org.junit.Assert.*
+import android.content.Context
+import android.os.Build
+import androidx.test.core.app.ApplicationProvider
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.medialink.archcompsubmission.data.repository.MoviesRepository
+import com.medialink.archcompsubmission.data.repository.TvShowsRepository
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.annotation.Config
 
 /*
 BaseViewModelTest
 1. pastikan list data movie tidak null
 2. pastikan ukuran list movie sama dengan dummy
  */
+@RunWith(AndroidJUnit4::class)
+@Config(sdk = [Build.VERSION_CODES.Q])
 class BaseViewModelTest {
-    @Test
-    fun checkDetailMovieBenar() {
-        val baseViewModel = BaseViewModel(BaseFragment.PARAM_MOVIE)
-        val listData = baseViewModel.getListData()
+    private val context: Context = ApplicationProvider.getApplicationContext()
 
-        val expectedValue = DataDummy.generateMovies().size
-        assertNotNull(listData)
-        assertEquals(expectedValue, listData.size)
+    @Test
+    fun test_JumlahDataMovie() {
+        val baseViewModel = BaseViewModel(context, BaseFragment.PARAM_MOVIE) // ambil dari view model
+        val listData = MoviesRepository(context).getListData() // ambil langsung dari repository
+
+        val expectedValue = listData.size
+        assertNotNull(baseViewModel)
+        assertEquals(expectedValue, baseViewModel.getListData().size)
     }
 
     @Test
-    fun checkDetailTvBenar() {
-        val baseViewModel = BaseViewModel(BaseFragment.PARAM_TV_SHOW)
-        val listData = baseViewModel.getListData()
+    fun test_JumlahDataTvShow() {
+        val baseViewModel = BaseViewModel(context, BaseFragment.PARAM_TV_SHOW).getListData() // ambil data dari view model
+        val listData = TvShowsRepository(context).getListData() // ambil data dari repository
 
-        val expectedValue = DataDummy.generateTvShows().size
-        assertNotNull(listData)
-        assertEquals(expectedValue, listData.size)
+        val expectedValue = listData.size
+        assertNotNull(baseViewModel)
+        assertEquals(expectedValue, baseViewModel.size)
+    }
+
+    @Test
+    fun test_DataMoviePertamaBenar() {
+        val dataViewModel = BaseViewModel(context, BaseFragment.PARAM_MOVIE).getListData()[0]
+        val dataRepository = MoviesRepository(context).getListData()[0]
+
+        assertNotNull(dataViewModel)
+        assertEquals(dataViewModel.id, dataRepository.id)
+        assertEquals(dataViewModel.title, dataRepository.title)
+        assertEquals(dataViewModel.overview, dataRepository.overview)
+        assertEquals(dataViewModel.voteAverage, dataRepository.voteAverage)
+    }
+
+    @Test
+    fun test_DataTvShowPertamaBenar() {
+        val dataViewModel = BaseViewModel(context, BaseFragment.PARAM_TV_SHOW).getListData()[0]
+        val dataRepository = TvShowsRepository(context).getListData()[0]
+
+        assertNotNull(dataViewModel)
+        assertEquals(dataViewModel.id, dataRepository.id)
+        assertEquals(dataViewModel.title, dataRepository.title)
+        assertEquals(dataViewModel.overview, dataRepository.overview)
+        assertEquals(dataViewModel.voteAverage, dataRepository.voteAverage)
     }
 }

@@ -46,7 +46,7 @@ class DetailActivity : AppCompatActivity() {
             idJenis = bundle.getInt(EXTRA_JENIS, 0)
             id = bundle.getInt(EXTRA_ID, 0)
         }
-        val factory = DataFactory.getDetailFactory(idJenis)
+        val factory = DataFactory.getDetailFactory(applicationContext, idJenis)
         viewModel = ViewModelProvider(this, factory).get(DetailViewModel::class.java)
 
         val detail = viewModel.getCurrentData(id)

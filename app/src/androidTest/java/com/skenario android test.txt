@@ -2,7 +2,7 @@ MainActivityTest
 
 1. Menampilkan data movies
     - Memastikan movies_rv dalam keadaan tampil.
-    - Gulir movies_rv ke posisi data terakhir.
+    - Test swipe up recycler view
 
 2. Menampilkan data tv shows
     - click tab tv show
@@ -29,4 +29,127 @@ MainActivityTest
     - Click tombol Share
     - Toast ditampilkan (belum imlementasi kode sebenarnya)
 
-7. untuk yang tv show tidak bikin test lagi. fungsi dan layout sama.
+7. ViewPager swipe ke kiri (shouldShowTvShowTab)
+    - swipe ke kiri pada view pager
+    - pastikan tab yang tampil adalah tv show
+
+8. ViewPager swipe ke kanan dari tv show (shouldClickTvShow_swipeRightToMovie)
+    - klik tab tv show
+    - swipe ke kanan
+    - pastikan tab yang tampil adalah tab movie
+
+
+DetailActivityTest
+1. Menampilkan detail record pertama Movie
+    - tampilkan activity detail dengan parameter id record pertama movie
+    - pastikan title tampil
+    - pastikan title yang dikirim sesuai dengan title pada repository
+    - pastikan tanggal tampil
+    - pastikan tanggal yang dikirim sesuai dg title pada repository
+    - pastikan vote tampil
+    - pastikan vote yang dikirim sesuai dengan vote pada repository
+    - pastikan progress vote tampil
+    - pastikan nilai progress vote sama dengan yang dikirim
+    - pastikan overview tampil
+    - pastikan nilai overview sama dengan yang dikirim
+
+2. menampilakn detail record pertama tv show
+   - tampilkan activity detail dengan parameter id record pertama tv show
+   - pastikan title tampil
+   - pastikan title yang dikirim sesuai dengan title pada repository
+   - pastikan tanggal tampil
+   - pastikan tanggal yang dikirim sesuai dg title pada repository
+   - pastikan vote tampil
+   - pastikan vote yang dikirim sesuai dengan vote pada repository
+   - pastikan progress vote tampil
+   - pastikan nilai progress vote sama dengan yang dikirim
+   - pastikan overview tampil
+   - pastikan nilai overview sama dengan yang dikirim
+
+
+BaseViewModelTest
+1. test_JumlahDataMovie, jumlah data yg di load harus benar
+    - load data dari view model
+    - load data dari repository
+    - pastikan data dari view model tidak null
+    - pastikan jumlah data dari view model sesuai dg data dari repository
+
+2. test_JumlahDataTvShow, jumlah tv show yg di load harus benar
+    - load data dari view model
+    - load data dari repository
+    - pastikan data dari view model tidak null
+    - pastikan jumlah data dari view model sesuai dg data dari repository
+
+3. test_DataMoviePertamaBenar, rec pertama harus sesuai dengan repository
+    - load data pertama dari view model
+    - load data pertama dari repository
+    - pastikan data pertama dari view model tidak null
+    - pastikan id dari view model sama dengan id dari repository
+    - pastikan title dari view model sama dengan title dari repository
+    - pastikan overview dari view model sama dengan overview dari repository
+    - pastikan vote avg dari view model sama dengan vote avg dari repository
+
+4. test_DataTvShowPertamaBenar, rec pertama tv show harus sesuai dengan repository
+    - load data pertama dari view model
+    - load data pertama dari repository
+    - pastikan data pertama dari view model tidak null
+    - pastikan id dari view model sama dengan id dari repository
+    - pastikan title dari view model sama dengan title dari repository
+    - pastikan overview dari view model sama dengan overview dari repository
+    - pastikan vote avg dari view model sama dengan vote avg dari repository
+
+DetailViewModelTest
+1. test_DetailPertamaMovie, data yang diambil pada view model harus sesuai dengan repository
+    - pastikan rec 1, repository tidak null
+    - dapatkan nilai rec 1 melalui view model
+    - pastikan nilai movie tidak null
+    - pastikan movie id sama dengan id pada repository
+    - pastikan movie title sama dengan title pada repository
+    - pastikan movie release date sama dengan release date pada repository
+    - pastikan movie overview sama dengan overview pada repository
+
+2. test_DetailPertamaTvShow,   data yang diambil pada view model harus sesuai dengan repository
+    - pastikan rec 1, repository tidak null
+    - dapatkan nilai rec 1 melalui view model
+    - pastikan nilai tv show tidak null
+    - pastikan tv show id sama dengan id pada repository
+    - pastikan tv show title sama dengan title pada repository
+    - pastikan tv show release date sama dengan release date pada repository
+    - pastikan tv show overview sama dengan overview pada repository
+
+TvShowsRepositoryTest
+1. test_getPackageName
+    - pastikan nama package sesuai dengan context
+
+2. getListData, list data tv show
+    - dapatkan list data dari repository
+    - pastikan jumlah record nya 20
+
+3. getCurrentData
+    - dapatkan list data dari repository
+    - ambil detail tv show rec pertama
+    - pastikan detail pertama tv show tidak null
+    - pastikan id rec pertama sesuai dengan data dari repository
+    - pastikan title rec pertama sesuai dengan data dari repository
+    - pastikan detail tv show ketiga tidak null
+    - pastikan id rec ketiga sesuai dengan data dari repository
+    - pastikan title rec ketiga sesuai dengan data dari repository
+
+
+MoviesRepositoryTest
+1. test_getPackageName
+    - pastikan nama package sesuai dengan context
+
+2. getListData
+    - dapatkan list data dari repository
+    - pastikan jumlah record nya 20
+
+3. getCurrentData
+    - dapatkan list data dari repository
+    - ambil detail movie rec pertama
+    - pastikan detail movie pertama tidak null
+    - pastikan id rec pertama sesuai dengan data dari repository
+    - pastikan title rec pertama sesuai dengan data dari repository
+    - pastikan detail movie ketiga tidak null
+    - pastikan id rec ketiga sesuai dengan data dari repository
+    - pastikan title rec ketiga sesuai dengan data dari repository
